@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'pages#home'
+  get '/about', to: 'pages#about'
 
   namespace :admin do
     root to: 'dashboard#index'

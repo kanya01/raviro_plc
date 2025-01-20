@@ -5,6 +5,7 @@ import React from 'react'
 
 import { createRoot } from 'react-dom/client'
 import HomePage from './components/HomePage'
+import AboutPage from './components/AboutPage'
 import Header from './components/Header'
 import Footer from './components/Footer'
 
@@ -24,6 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'HomePage':
                 const props = JSON.parse(element.dataset.reactProps || '{}');
                 component = <HomePage {...props} />;
+                break;
+            case 'AboutPage':
+                component = <AboutPage/>;
                 break;
             case 'Header':
                 component = <Header/>;
