@@ -6,8 +6,10 @@ import React from 'react'
 import { createRoot } from 'react-dom/client'
 import HomePage from './components/HomePage'
 import AboutPage from './components/AboutPage'
+import ContactPage from './components/ContactPage'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import ExploreButton from './components/ExploreButton'
 
 
 console.log('Application.js loaded');
@@ -29,6 +31,12 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'AboutPage':
                 component = <AboutPage/>;
                 break;
+                case 'ContactPage':
+                    component = <ContactPage/>;
+                    break;
+            case 'ExploreButton':
+                    component = <ExploreButton/>;
+                    break;
             case 'Header':
                 component = <Header/>;
                 break;

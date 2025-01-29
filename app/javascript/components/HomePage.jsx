@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
+// import { Link } from 'react-router-dom';
 import Header from './Header';
 import Footer from './Footer';
+import ExploreButton from "./ExploreButton";
 
 const FeatureCard = ({ title, description, icon }) => {
     return (
@@ -77,12 +79,17 @@ const HomePage = ({ featuredPublications = [], recentOpportunities = [] }) => {
                                 Through knowledge brokering, advocacy, and collaborative solutions
                             </p>
                             <div className="flex justify-center gap-4">
-                                <button className="bg-white text-blue-800 px-6 py-3 rounded-lg font-semibold hover:bg-opacity-90">
-                                    Explore Research
-                                </button>
-                                <button className="border-2 border-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-800">
-                                    View Opportunities
-                                </button>
+                                <ExploreButton
+                                text="Explore Projects"
+                                href="/partnerships"
+                                variant="primary"
+                                />
+
+                                <ExploreButton
+                                    text="View Opportunities"
+                                    variant="secondary"
+                                    href="/opportunities"
+                                />
                             </div>
                         </div>
                     </div>

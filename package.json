@@ -13,6 +13,7 @@
     "@hotwired/turbo-rails": "^8.0.12",
     "lucide-react": "^0.473.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.3"
   }
 }
