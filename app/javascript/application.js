@@ -1,74 +1,67 @@
 // Entry point for the build script in your package.json
-import "@hotwired/turbo-rails"
-import "./controllers"
-import React from 'react'
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@hotwired/turbo-rails";
+import "./controllers";
+import React from "react";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 
-import { createRoot } from 'react-dom/client'
-import HomePage from './components/HomePage'
-import AboutPage from './components/AboutPage'
-import ContactPage from './components/ContactPage'
-import Header from './components/Header'
-import Footer from './components/Footer'
-import ExploreButton from './components/ExploreButton'
+import { createRoot } from "react-dom/client";
+import HomePage from "./components/HomePage";
+import AboutPage from "./components/AboutPage";
+import ContactPage from "./components/ContactPage";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ExploreButton from "./components/ExploreButton";
 
+console.log("Application.js loaded");
+document.addEventListener("DOMContentLoaded", () => {
+  console.log("DOM Content Loaded");
 
+  const reactElements = document.querySelectorAll("[data-react-component]");
 
-console.log('Application.js loaded');
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM Content Loaded');
+  reactElements.forEach((element) => {
+    const componentName = element.dataset.reactComponent;
+    // const props = JSON.parse(element.dataset.reactProps || '{}')
 
-    const reactElements = document.querySelectorAll('[data-react-component]')
+    let component;
+    switch (componentName) {
+      case "HomePage":
+        const props = JSON.parse(element.dataset.reactProps || "{}");
+        component = <HomePage {...props} />;
+        break;
+      case "AboutPage":
+        component = <AboutPage />;
+        break;
+      case "ContactPage":
+        component = <ContactPage />;
+        break;
+      case "ExploreButton":
+        component = <ExploreButton />;
+        break;
+      case "Header":
+        component = <Header />;
+        break;
+      case "Footer":
+        component = <Footer />;
+        break;
+      default:
+        console.warn(`Component ${componentName} not found`);
+        return;
+    }
 
-    reactElements.forEach(element => {
-        const componentName = element.dataset.reactComponent
-        // const props = JSON.parse(element.dataset.reactProps || '{}')
-
-        let component;
-        switch (componentName) {
-            case 'HomePage':
-                const props = JSON.parse(element.dataset.reactProps || '{}');
-                component = <HomePage {...props} />;
-                break;
-            case 'AboutPage':
-                component = <AboutPage/>;
-                break;
-                case 'ContactPage':
-                    component = <ContactPage/>;
-                    break;
-            case 'ExploreButton':
-                    component = <ExploreButton/>;
-                    break;
-            case 'Header':
-                component = <Header/>;
-                break;
-            case 'Footer':
-                component = <Footer/>;
-                break;
-            default:
-                console.warn(`Component ${componentName} not found`);
-                return;
-        }
-
-        try {
-            const root = createRoot(element);
-            root.render(
-                <React.StrictMode>
-                    {component}
-                </React.StrictMode>
-            );
-            console.log(`Rendered ${componentName} mounted successfully`);
-        } catch (error) {
-            console.error(`Error mounting ${componentName}`, error);
-        }
-    });
+    try {
+      const root = createRoot(element);
+      root.render(<React.StrictMode>{component}</React.StrictMode>);
+      console.log(`Rendered ${componentName} mounted successfully`);
+    } catch (error) {
+      console.error(`Error mounting ${componentName}`, error);
+    }
+  });
 });
 
-window.addEventListener('error', (event) => {
-    console.error('An error occurred:', event.error);
+window.addEventListener("error", (event) => {
+  console.error("An error occurred:", event.error);
 });
 
-document.addEventListener('turbo:load', () => {
-    console.log('Turbo loaded');
+document.addEventListener("turbo:load", () => {
+  console.log("Turbo loaded");
 });
-
