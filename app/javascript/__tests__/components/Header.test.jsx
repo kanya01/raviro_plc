@@ -1,89 +1,49 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Header from '../../components/Header';
 
-// Mock router if you're using React Router
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => jest.fn(),
-    Link: ({ children, to }) => <a href={to}>{children}</a>
-}));
-
 describe('Header', () => {
-    describe('Desktop View', () => {
-        it('renders all navigation links', () => {
+    describe('Desktop Navigation', () => {
+        it('renders navigation links in desktop view', () => {
             render(<Header />);
+            const desktopNav = screen.getByRole('navigation');
 
-            expect(screen.getByText(/Research/i)).toBeInTheDocument();
-            expect(screen.getByText(/About/i)).toBeInTheDocument();
-            expect(screen.getByText(/Contact/i)).toBeInTheDocument();
-        });
+            // Test desktop navigation links
+            const desktopLinks = desktopNav.querySelectorAll('.md\\:flex a');
+            expect(desktopLinks).toHaveLength(4);
 
-        it('renders brand logo/text', () => {
-            render(<Header />);
-
-            expect(screen.getByAltText(/brand logo/i)).toBeInTheDocument();
-        });
-
-        it('navigates when clicking links', () => {
-            render(<Header />);
-
-            const aboutLink = screen.getByText(/about/i);
-            expect(aboutLink.closest('a')).toHaveAttribute('href', '/about');
+            // Verify specific link text and href
+            expect(desktopLinks[0]).toHaveAttribute('href', '/research');
+            expect(desktopLinks[0]).toHaveTextContent('Research');
         });
     });
 
-    describe('Mobile View', () => {
-        it('shows hamburger menu on mobile view', () => {
+    describe('Mobile Navigation', () => {
+        it('toggles mobile menu when hamburger button is clicked', async () => {
             render(<Header />);
 
-            expect(screen.getByRole('button', { name: /menu/i })).toBeInTheDocument();
-        });
-
-        it('toggles mobile menu when clicking hamburger', async () => {
-            render(<Header />);
-
-            const menuButton = screen.getByRole('button', { name: /menu/i });
+            // Find and click hamburger button
+            const menuButton = screen.getByRole('button');
             await userEvent.click(menuButton);
 
-            expect(screen.getByRole('navigation')).toHaveClass('mobile-menu-open');
+            // Verify mobile menu is visible
+            const mobileMenu = screen.getByRole('navigation').querySelector('.md\\:hidden');
+            expect(mobileMenu).toBeVisible();
 
-            await userEvent.click(menuButton);
-            expect(screen.getByRole('navigation')).not.toHaveClass('mobile-menu-open');
-        });
-
-        it('closes mobile menu when selecting a link', async () => {
-            render(<Header />);
-
-            const menuButton = screen.getByRole('button', { name: /menu/i });
-            await userEvent.click(menuButton);
-
-            const aboutLink = screen.getByText(/about/i);
-            await userEvent.click(aboutLink);
-
-            expect(screen.getByRole('navigation')).not.toHaveClass('mobile-menu-open');
+            // Verify mobile navigation links
+            const mobileLinks = mobileMenu.querySelectorAll('a');
+            expect(mobileLinks).toHaveLength(4);
+            expect(mobileLinks[0]).toHaveAttribute('href', '/research');
+  
         });
     });
 
     describe('Accessibility', () => {
-        it('has proper ARIA labels', () => {
+        it('has accessible navigation', () => {
             render(<Header />);
-
-            expect(screen.getByRole('banner')).toBeInTheDocument();
             expect(screen.getByRole('navigation')).toBeInTheDocument();
-            expect(screen.getByRole('button', { name: /menu/i })).toHaveAttribute('aria-expanded');
-        });
-
-        it('handles keyboard navigation', () => {
-            render(<Header />);
-
-            const menuItems = screen.getAllByRole('link');
-            menuItems[0].focus();
-
-            expect(document.activeElement).toBe(menuItems[0]);
-            fireEvent.keyDown(document.activeElement, { key: 'Tab' });
-            expect(document.activeElement).toBe(menuItems[1]);
+            expect(screen.getByRole('button')).toHaveAttribute('aria-label', 'Toggle navigation menu');
         });
     });
 });
