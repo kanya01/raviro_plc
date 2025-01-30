@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import React from 'react'
+import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import { createRoot } from 'react-dom/client'
 import HomePage from './components/HomePage'
@@ -10,6 +11,7 @@ import ContactPage from './components/ContactPage'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ExploreButton from './components/ExploreButton'
+
 
 
 console.log('Application.js loaded');

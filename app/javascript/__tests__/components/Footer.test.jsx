@@ -3,96 +3,152 @@ import { render, screen } from '@testing-library/react';
 import Footer from '../../components/Footer';
 
 describe('Footer', () => {
-    describe('Content Rendering', () => {
-        it('renders all three columns', () => {
+    beforeEach(() => {
+        // Add FontAwesome classes to jsdom
+        document.body.innerHTML = `
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    `;
+    });
+
+    describe('Content Sections', () => {
+        it('renders company section with correct content', () => {
             render(<Footer />);
 
-            expect(screen.getByText(/about/i)).toBeInTheDocument();
-            expect(screen.getByText(/quick links/i)).toBeInTheDocument();
-            expect(screen.getByText(/contact us/i)).toBeInTheDocument();
+            expect(screen.getByText('Raviro')).toBeInTheDocument();
+            expect(screen.getByText(/Bridging the gap between public health research/i))
+                .toBeInTheDocument();
         });
 
-        it('displays current year in copyright notice', () => {
+        it('renders quick links section with all links', () => {
             render(<Footer />);
+            const quickLinks = ['Research Repository', 'Opportunities', 'About Us', 'Contact'];
 
-            const currentYear = new Date().getFullYear();
-            expect(screen.getByText(new RegExp(currentYear.toString()))).toBeInTheDocument();
+            expect(screen.getByText('Quick Links')).toBeInTheDocument();
+            quickLinks.forEach(link => {
+                const linkElement = screen.getByText(link);
+                expect(linkElement).toBeInTheDocument();
+                expect(linkElement.closest('a')).toHaveAttribute('href');
+            });
         });
 
-        it('renders all social media links', () => {
+        it('renders resources section with all links', () => {
+            render(<Footer />);
+            const resourceLinks = ['Blog', 'Publications', 'Partnerships', 'FAQ'];
+
+            expect(screen.getByText('Resources')).toBeInTheDocument();
+            resourceLinks.forEach(link => {
+                const linkElement = screen.getByText(link);
+                expect(linkElement).toBeInTheDocument();
+                expect(linkElement.closest('a')).toHaveAttribute('href');
+            });
+        });
+
+        it('renders contact section with correct information', () => {
             render(<Footer />);
 
-            const socialLinks = screen.getAllByRole('link');
-            const socialPlatforms = ['Twitter', 'LinkedIn', 'GitHub'];
+            expect(screen.getByText('Contact Us')).toBeInTheDocument();
+            expect(screen.getByText(/Email: contact@raviro.com/)).toBeInTheDocument();
+            expect(screen.getByText(/Phone: \+1 234 567 890/)).toBeInTheDocument();
+            expect(screen.getByText(/Address:/)).toBeInTheDocument();
+        });
+    });
 
-            socialPlatforms.forEach(platform => {
-                expect(
-                    socialLinks.some(link => link.getAttribute('aria-label')?.includes(platform))
-                ).toBe(true);
+    describe('Link Functionality', () => {
+        it('renders all footer links with correct attributes', () => {
+            render(<Footer />);
+            const links = {
+                'Research Repository': '/research',
+                'Opportunities': '/opportunities',
+                'About Us': '/about',
+                'Contact': '/contact',
+                'Blog': '/blog',
+                'Publications': '/publications',
+                'Partnerships': '/partnerships',
+                'FAQ': '/faq'
+            };
+
+            Object.entries(links).forEach(([text, path]) => {
+                const linkElement = screen.getByText(text).closest('a');
+                expect(linkElement).toHaveAttribute('href', path);
+                expect(linkElement).toHaveClass('text-gray-400');
+                expect(linkElement).toHaveClass('hover:text-white');
+                expect(linkElement).toHaveClass('transition-colors');
             });
         });
     });
 
-    describe('Responsive Layout', () => {
-        it('uses grid layout for columns', () => {
+    describe('Social Links', () => {
+        it('renders social media links with correct attributes', () => {
+            render(<Footer />);
+            const socialLinks = ['twitter', 'linkedin', 'github'];
+
+            const bottomSection = screen.getByText(/© \d{4} Raviro/).parentElement
+                .parentElement;
+            const socialIcons = bottomSection.querySelectorAll('a[target="_blank"]');
+
+            expect(socialIcons).toHaveLength(socialLinks.length);
+
+            socialIcons.forEach(icon => {
+                expect(icon).toHaveAttribute('rel', 'noopener noreferrer');
+                expect(icon).toHaveClass('text-gray-400');
+                expect(icon).toHaveClass('hover:text-white');
+            });
+        });
+    });
+
+    describe('Layout and Styling', () => {
+        it('has correct container and grid classes', () => {
             const { container } = render(<Footer />);
 
-            const footerGrid = container.firstChild;
-            expect(footerGrid).toHaveClass('grid');
+            expect(container.querySelector('.container')).toHaveClass('mx-auto', 'px-4', 'py-12');
+            expect(container.querySelector('.grid')).toHaveClass(
+                'grid-cols-1',
+                'md:grid-cols-4',
+                'gap-8'
+            );
+        });
+
+        it('has correct responsive bottom bar layout', () => {
+            const { container } = render(<Footer />);
+            const bottomBar = container.querySelector('.border-t');
+
+            expect(bottomBar).toHaveClass('border-gray-800', 'mt-8', 'pt-8');
+            expect(bottomBar.firstElementChild).toHaveClass(
+                'flex',
+                'flex-col',
+                'md:flex-row',
+                'justify-between',
+                'items-center'
+            );
         });
     });
 
-    describe('Links Functionality', () => {
-        it('has proper href attributes for all links', () => {
+    describe('Dynamic Content', () => {
+        it('displays current year in copyright text', () => {
             render(<Footer />);
+            const currentYear = new Date().getFullYear();
 
-            const links = screen.getAllByRole('link');
-            links.forEach(link => {
-                expect(link).toHaveAttribute('href');
-                expect(link.href).not.toBe('');
-            });
-        });
-
-        it('opens social links in new tab', () => {
-            render(<Footer />);
-
-            const socialLinks = screen.getAllByRole('link');
-            const externalLinks = socialLinks.filter(link =>
-                link.getAttribute('aria-label')?.includes('Twitter') ||
-                link.getAttribute('aria-label')?.includes('LinkedIn') ||
-                link.getAttribute('aria-label')?.includes('GitHub')
-            );
-
-            externalLinks.forEach(link => {
-                expect(link).toHaveAttribute('target', '_blank');
-                expect(link).toHaveAttribute('rel', 'noopener noreferrer');
-            });
+            expect(screen.getByText(new RegExp(`© ${currentYear} Raviro`)))
+                .toBeInTheDocument();
         });
     });
 
     describe('Accessibility', () => {
-        it('has proper ARIA labels for social icons', () => {
-            render(<Footer />);
-
-            const socialLinks = screen.getAllByRole('link');
-            const socialPlatforms = ['Twitter', 'LinkedIn', 'GitHub'];
-
-            socialPlatforms.forEach(platform => {
-                const link = socialLinks.find(link =>
-                    link.getAttribute('aria-label')?.includes(platform)
-                );
-                expect(link).toHaveAttribute('aria-label');
-            });
-        });
-
-        it('has sufficient color contrast', () => {
+        it('uses semantic HTML structure', () => {
             const { container } = render(<Footer />);
 
-            const footerElement = container.firstChild;
-            const computedStyle = window.getComputedStyle(footerElement);
+            expect(container.querySelector('footer')).toBeInTheDocument();
+            expect(container.querySelectorAll('h4')).toHaveLength(3);
+            expect(container.querySelectorAll('ul')).toHaveLength(3);
+        });
 
-            // Note: This is a basic check. You might want to use a color contrast testing library
-            expect(computedStyle.backgroundColor).not.toBe(computedStyle.color);
+        it('has readable text colors', () => {
+            const { container } = render(<Footer />);
+
+            const textElements = container.querySelectorAll('.text-gray-400');
+            textElements.forEach(element => {
+                expect(element).toHaveClass('text-gray-400');
+            });
         });
     });
 });
