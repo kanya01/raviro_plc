@@ -35,6 +35,7 @@ describe('Header', () => {
             const mobileLinks = mobileMenu.querySelectorAll('a');
             expect(mobileLinks).toHaveLength(4);
             expect(mobileLinks[0]).toHaveAttribute('href', '/research');
+  
         });
     });
 
