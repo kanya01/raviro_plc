@@ -5,9 +5,9 @@ class Api::InquiriesController < ApplicationController
     @inquiry = Inquiry.new(inquiry_params)
     if @inquiry.save
       # InquiryMailer.new_inquiry(@inquiry).deliver_now
-      render json: { status: 'success' }, status: :created
+      render json: { status: "success" }, status: :created
     else
-      render json: { errors: @inquiry.errors}, status: :unprocessable_entity
+      render json: { errors: @inquiry.errors }, status: :unprocessable_entity
     end
   end
 
