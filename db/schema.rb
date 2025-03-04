@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_01_29_202108) do
+ActiveRecord::Schema[8.0].define(version: 2025_03_04_185211) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -66,6 +66,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_29_202108) do
     t.index ["job_listing_id"], name: "index_applications_on_job_listing_id"
   end
 
+  create_table "blog_posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.string "excerpt"
+    t.string "slug"
+    t.string "category"
+    t.string "author"
+    t.integer "read_time"
+    t.boolean "published"
+    t.datetime "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "tag_id", null: false
+    t.index ["slug"], name: "index_blog_posts_on_slug", unique: true
+    t.index ["tag_id"], name: "index_blog_posts_on_tag_id"
+  end
+
   create_table "inquiries", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -103,7 +120,14 @@ ActiveRecord::Schema[8.0].define(version: 2025_01_29_202108) do
     t.string "issue"
   end
 
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "applications", "job_listings"
+  add_foreign_key "blog_posts", "tags"
 end

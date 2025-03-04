@@ -6,46 +6,51 @@ const Header = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setIsScrolled(window.scrollY > 20);
+            setIsScrolled(window.scrollY > 10);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
     return (
-        <header className={`fixed w-full z-50 transition-all duration-300 ${
-            isScrolled ? 'bg-white shadow-md py-2' : 'bg-transparent py-4'
-        }`}>
-            <div className="container mx-auto px-4">
-                <nav className="flex items-center justify-between">
+        <header
+            className={`fixed w-full z-50 transition-all duration-500 ${
+                isScrolled ? 'bg-white shadow-sm py-3' : 'bg-transparent py-5'
+            }`}
+        >
+            <div className="container mx-auto px-6">
+                <div className="flex items-center justify-between">
                     {/* Logo */}
-                    <div className="flex items-center">
-                        <a href="/" className={`text-2xl font-bold ${
-                            isScrolled ? 'text-blue-800' : 'text-white'
-                        }`}>
-                            Raviro
-                        </a>
-                    </div>
+                    <a href="/" className="text-2xl font-extralight tracking-wide text-gray-800">
+                        Raviro
+                    </a>
 
                     {/* Desktop Navigation */}
-                    <div className="hidden md:flex items-center space-x-8">
-                        <NavLink href="/research" isScrolled={isScrolled}>Research</NavLink>
-                        <NavLink href="/opportunities" isScrolled={isScrolled}>Opportunities</NavLink>
-                        <NavLink href="/about" isScrolled={isScrolled}>About</NavLink>
-                        <NavLink href="/contact" isScrolled={isScrolled}>Contact</NavLink>
-                    </div>
+                    <nav className="hidden md:flex items-center space-x-10">
+                        {/*{['Research', 'Opportunities', 'About', 'Contact'].map((item) => (*/}
+                        {[ 'Blog','About', 'Contact'].map((item) => (
+                            <a
+                                key={item}
+                                href={`/${item.toLowerCase()}`}
+                                className="text-sm font-light text-gray-600 hover:text-blue-500 transition-colors duration-300"
+                            >
+                                {item}
+                            </a>
+                        ))}
+                    </nav>
 
                     {/* Mobile Menu Button */}
                     <button
                         className="md:hidden"
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label="Toggle navigation menu"
                     >
                         <svg
-                            className={`w-6 h-6 ${isScrolled ? 'text-blue-800' : 'text-white'}`}
+                            className="w-6 h-6 text-gray-700"
                             fill="none"
                             strokeLinecap="round"
                             strokeLinejoin="round"
-                            strokeWidth="2"
+                            strokeWidth="1.5"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
                         >
@@ -56,42 +61,30 @@ const Header = () => {
                             )}
                         </svg>
                     </button>
-                </nav>
+                </div>
 
                 {/* Mobile Menu */}
-                <div className={`md:hidden transition-all duration-300 ${
-                    isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
-                } overflow-hidden`}>
-                    <div className="py-4 space-y-4">
-                        <MobileNavLink href="/research">Research</MobileNavLink>
-                        <MobileNavLink href="/opportunities">Opportunities</MobileNavLink>
-                        <MobileNavLink href="/about">About</MobileNavLink>
-                        <MobileNavLink href="/contact">Contact</MobileNavLink>
+                <div
+                    className={`md:hidden transition-all duration-300 overflow-hidden ${
+                        isMobileMenuOpen ? 'max-h-60 opacity-100 mt-4' : 'max-h-0 opacity-0'
+                    }`}
+                >
+                    <div className="rounded-md bg-white p-4 space-y-3 shadow-sm">
+                        {/*{['Research', 'Opportunities', 'About', 'Contact'].map((item) => (*/}
+                        {[ 'About', 'Contact'].map((item) => (
+                            <a
+                                key={item}
+                                href={`/${item.toLowerCase()}`}
+                                className="block text-sm py-2 text-gray-600 hover:text-blue-500 transition-colors duration-300"
+                            >
+                                {item}
+                            </a>
+                        ))}
                     </div>
                 </div>
             </div>
         </header>
     );
 };
-
-const NavLink = ({ href, children, isScrolled }) => (
-    <a
-        href={href}
-        className={`transition-colors duration-300 ${
-            isScrolled ? 'text-gray-700 hover:text-blue-800' : 'text-white hover:text-blue-200'
-        }`}
-    >
-        {children}
-    </a>
-);
-
-const MobileNavLink = ({ href, children }) => (
-    <a
-        href={href}
-        className="block text-gray-700 hover:text-blue-800 transition-colors duration-300"
-    >
-        {children}
-    </a>
-);
 
 export default Header;

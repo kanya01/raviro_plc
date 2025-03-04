@@ -2,47 +2,353 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer components {
-  /* Add your custom component classes here */
-  .btn-primary {
-    @apply px-4 py-2 bg-primary text-white rounded hover:bg-opacity-90;
+@layer base {
+  html {
+    scroll-behavior: smooth;
   }
-  
-  .btn-secondary {
-    @apply px-4 py-2 bg-secondary text-white rounded hover:bg-opacity-90;
+
+  body {
+    @apply text-gray-800 font-sans antialiased;
   }
-  
-  .form-input {
-    @apply mt-1 block w-full rounded-md border-gray-300 shadow-sm;
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-extralight tracking-wide;
   }
 }
-.animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+
+/* Animation classes */
+.fade-in.visible {
+  opacity: 1 !important;
 }
-@keyframes fadeInUp {
+
+.scroll-fade.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+/* Subtle hover effects */
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+/* Custom focus styles */
+.focus-ring:focus {
+  @apply outline-none ring-2 ring-blue-400 ring-opacity-50;
+}
+
+/* Smooth transitions */
+a, button {
+  @apply transition-all duration-300;
+}
+
+/* Text link hover effect */
+.text-link {
+  position: relative;
+}
+
+.text-link::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.text-link:hover::after {
+  width: 100%;
+}
+
+/* Support for fallback for browsers without JS */
+.no-js .fade-in,
+.no-js .scroll-fade {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+}
+
+blockquote {
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+blockquote::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(59, 130, 246, 0.5), rgba(59, 130, 246, 0.1));
+}
+
+/* Testimonial animations */
+@keyframes fadeInRight {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateX(20px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
 }
 
-@layer utilities {
-  .animate-fade-in {
-    animation: fadeIn 1s ease-out forwards;
+@keyframes fadeOutLeft {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-20px);
   }
 }
 
-.animate-on-scroll {
+.testimonial-enter {
+  animation: fadeInRight 0.7s forwards;
+}
+
+.testimonial-exit {
+  animation: fadeOutLeft 0.7s forwards;
+}
+
+/* Improve dots accessibility */
+.testimonial-dot:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+}
+
+.contact-input:focus {
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.1);
+  border-color: rgba(59, 130, 246, 0.5);
+  outline: none;
+}
+
+/* Subtle input background */
+.contact-input {
+  background-color: rgba(249, 250, 251, 0.8);
+  transition: all 0.2s ease;
+}
+
+.contact-input:hover:not(:disabled) {
+  background-color: rgba(243, 244, 246, 0.8);
+}
+
+/* Success checkmark animation */
+@keyframes checkmark-circle {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes checkmark-path {
+  0% {
+    stroke-dashoffset: 100;
+  }
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+.success-checkmark circle {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: checkmark-circle 1s ease-in-out forwards;
+}
+
+.success-checkmark path {
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: checkmark-path 1s ease-in-out forwards 0.3s;
+}
+
+/* Clean form labels */
+.form-label {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: rgba(107, 114, 128, 0.8);
+  letter-spacing: 0.01em;
+}
+
+/* Smooth button transition */
+.btn-submit {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.btn-submit::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background-color: rgba(59, 130, 246, 0.1);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn-submit:hover::after {
+  width: 300%;
+  height: 300%;
+}
+
+.btn-submit:active {
+  transform: translateY(1px);
+}
+
+/* Page fade-in section */
+.fade-in {
   opacity: 0;
-  transform: translateY(20px);
-  transition: all 1s ease-out;
+  transform: translateY(10px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.animate-on-scroll.animate-fade-in {
+.fade-in.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+
+/* Add these styles to your CSS file for the blog pages */
+
+/* Blog typography refinements */
+.prose h2 {
+  @apply font-extralight text-gray-800 mb-6 mt-12;
+}
+
+.prose p {
+  @apply text-gray-700 leading-relaxed mb-6;
+}
+
+.prose blockquote {
+  @apply border-l-2 border-blue-400 pl-6 italic my-8 text-gray-700;
+}
+
+.prose ul {
+  @apply list-disc pl-6 mb-6 space-y-2 text-gray-700;
+}
+
+/* Blog card hover effects */
+.blog-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Article reading progress indicator */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(to right, #60a5fa, #3b82f6);
+  z-index: 100;
+  transition: width 0.1s ease;
+}
+
+/* Category tags */
+.category-tag {
+  @apply text-xs text-blue-600 uppercase tracking-wider;
+  position: relative;
+  transition: padding 0.3s ease;
+}
+
+.category-tag::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transition: width 0.3s ease;
+}
+
+.category-tag:hover {
+  padding-bottom: 2px;
+}
+
+.category-tag:hover::after {
+  width: 100%;
+}
+
+/* Responsive image handling */
+.post-image {
+  @apply my-8 rounded-md overflow-hidden;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Code blocks */
+.prose code {
+  @apply bg-gray-50 px-1 py-0.5 rounded text-sm text-gray-800;
+}
+
+.prose pre {
+  @apply bg-gray-50 p-4 rounded-md overflow-x-auto my-6;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-gray-800;
+}
+
+/* Table styles */
+.prose table {
+  @apply w-full border-collapse my-8;
+}
+
+.prose thead {
+  @apply bg-gray-50;
+}
+
+.prose th {
+  @apply p-3 text-left font-normal text-gray-600 border-b border-gray-200;
+}
+
+.prose td {
+  @apply p-3 border-b border-gray-100 text-gray-700;
+}
+
+/* Smooth anchor links */
+.prose a {
+  @apply text-blue-600 transition-colors duration-300;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.prose a:hover {
+  @apply text-blue-800;
+  border-bottom-color: currentColor;
+}
+
+/* Footnotes */
+.footnote {
+  @apply text-xs text-gray-500 mt-12 pt-4 border-t border-gray-100;
+}
+
+/* Author bio */
+.author-avatar {
+  @apply h-12 w-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-500;
+}
+
+.author-name {
+  @apply font-medium text-gray-800;
+}
+
+.author-role {
+  @apply text-sm text-gray-500;
 }
