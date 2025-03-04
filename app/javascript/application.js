@@ -2,7 +2,7 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import React from 'react'
-import '@fortawesome/fontawesome-free/css/all.min.css';
+// import '@fortawesome/fontawesome-free/css/all.min.css';
 
 import { createRoot } from 'react-dom/client'
 import HomePage from './components/HomePage'
@@ -11,7 +11,8 @@ import ContactPage from './components/ContactPage'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import ExploreButton from './components/ExploreButton'
-
+import BlogPage from "./components/BlogPage";
+import BlogPostPage from "./components/BlogPostPage";
 
 
 console.log('Application.js loaded');
@@ -22,12 +23,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     reactElements.forEach(element => {
         const componentName = element.dataset.reactComponent
+        let props = {};
+
+        try {
+
+            if (element.dataset.reactProps) {
+                props = JSON.parse(element.dataset.reactProps);
+                console.log(`Props for ${componentName}:`, props);
+            }
+        } catch (e) {
+            console.error("Error parsing props:". e );
+        }
         // const props = JSON.parse(element.dataset.reactProps || '{}')
 
         let component;
         switch (componentName) {
             case 'HomePage':
-                const props = JSON.parse(element.dataset.reactProps || '{}');
                 component = <HomePage {...props} />;
                 break;
             case 'AboutPage':
@@ -39,6 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
             case 'ExploreButton':
                     component = <ExploreButton/>;
                     break;
+            case 'BlogPage':
+                component = <BlogPage/>;
+                break;
+            case 'BlogPostPage':
+                component = <BlogPostPage {...props}/>;
+                break;
             case 'Header':
                 component = <Header/>;
                 break;

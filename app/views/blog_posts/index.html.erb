@@ -1,0 +1,8 @@
+<!-- app/views/blog_posts/index.html.erb -->
+<div data-react-component="BlogPage"
+     data-react-props="<%= {
+                             blogPosts: @blog_posts.as_json(
+                               only: [:title, :excerpt, :slug, :category, :published_at, :read_time]
+                             )
+                           }.to_json %>">
+</div>
