@@ -16,12 +16,14 @@ import BlogPostPage from "./components/BlogPostPage";
 
 
 console.log('Application.js loaded');
-document.addEventListener('DOMContentLoaded', () => {
+
+function initializeReactComponents() {
     console.log('DOM Content Loaded');
 
     const reactElements = document.querySelectorAll('[data-react-component]')
 
     reactElements.forEach(element => {
+        if (element.dataset.reactMounted) return;
         const componentName = element.dataset.reactComponent
         let props = {};
 
@@ -74,18 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
                     {component}
                 </React.StrictMode>
             );
+            element.dataset.reactMounted = 'true';
             console.log(`Rendered ${componentName} mounted successfully`);
         } catch (error) {
             console.error(`Error mounting ${componentName}`, error);
         }
     });
+}
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM Content Loaded');
+    initializeReactComponents();
+});
+document.addEventListener('turbo:load', () => {
+    console.log('Turbo loaded');
+    initializeReactComponents();
+});
+document.addEventListener('turbo:render', () => {
+    console.log('Turbo render');
+    initializeReactComponents();
 });
 
 window.addEventListener('error', (event) => {
     console.error('An error occurred:', event.error);
 });
-
-document.addEventListener('turbo:load', () => {
-    console.log('Turbo loaded');
-});
-
