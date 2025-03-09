@@ -6,8 +6,8 @@ class BlogPostsController < ApplicationController
 
   def show
     @blog_post = BlogPost.published.find_by!(slug: params[:id])
+    render :show
   rescue ActiveRecord::RecordNotFound
     redirect_to blog_posts_path, alert: "Blog post not found"
   end
-  render :show
 end
