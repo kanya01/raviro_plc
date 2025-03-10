@@ -1,23 +1,26 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
+# test/fixtures/blog_posts.yml
 one:
-  title: MyString
-  content: MyText
-  excerpt: MyString
-  slug: MyString
-  category: MyString
-  author: MyString
-  read_time: 1
-  published: false
-  published_at: 2025-03-04 17:30:04
+  title: First Post
+  content: This is the first post
+  excerpt: First post excerpt
+  slug: first-post
+  category: Test
+  author: Test Author
+  read_time: 5
+  published: true
+  published_at: <%= 2.days.ago %>
+  tag_id: 1
 
 two:
-  title: MyString
-  content: MyText
-  excerpt: MyString
-  slug: MyString
-  category: MyString
-  author: MyString
-  read_time: 1
-  published: false
-  published_at: 2025-03-04 17:30:04
+  title: Second Post
+  content: This is the second post
+  excerpt: Second post excerpt
+  slug: second-post
+  category: Test
+  author: Test Author
+  read_time: 7
+  published: true
+  published_at: <%= 1.day.ago %>
+  tag_id: 2
