@@ -67,7 +67,7 @@ gem "administrate", "~> 0.19.0"
 
 gem "devise", "~> 4.9"
 
-gem "aws-sdk-s3", "~> 1.178"
+gem "aws-sdk-s3", "~> 1.182"
 
 gem "terraform", "~> 0.0.9"
 
