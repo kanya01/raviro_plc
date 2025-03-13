@@ -2,7 +2,7 @@ require "test_helper"
 
 class ApplicationsControllerTest < ActionDispatch::IntegrationTest
   test "should get create" do
-    get applications_create_url
+    post applications_path
     assert_response :success
   end
 end

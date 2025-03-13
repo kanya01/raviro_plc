@@ -1,6 +1,11 @@
 # app/controllers/admin/blog_posts_controller.rb
-module Admin
+class Admin
+
+
   class BlogPostsController < Admin::BaseController
+
+
+
     before_action :set_blog_post, only: [ :show, :edit, :update, :destroy ]
 
     def index
@@ -47,7 +52,7 @@ module Admin
     end
 
     def blog_post_params
-      params.require(:blog_post).permit(:title, :content, :excerpt, :slug, :category, :author, :read_time, :published, :published_at)
+      params.require(:blog_post).permit(:title, :content, :excerpt, :slug, :category, :author, :read_time, :published, :published_at, :tag_id)
     end
   end
 end

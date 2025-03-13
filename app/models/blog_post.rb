@@ -1,5 +1,6 @@
 # app/models/blog_post.rb
 class BlogPost < ApplicationRecord
+  belongs_to :tag, optional: true
   validates :title, :slug, presence: true
   validates :slug, uniqueness: true
 

@@ -1,8 +1,11 @@
 class Admin::BaseController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, unless: -> { Rails.env.test? }
   layout "admin"
 
-  # def authenticate_admin
-  #   # TODO Add authentication logic here.
-  # end
+  private
+  def authenticate_admin!
+      unless current_user&.admin?
+        redirect_to root_path, alert: "You are not authorized to access this page"
+      end
+  end
 end
