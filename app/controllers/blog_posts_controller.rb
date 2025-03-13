@@ -9,7 +9,6 @@ class BlogPostsController < ApplicationController
 
   def show
     @blog_post = BlogPost.published.find_by!(slug: params[:id])
-    # render :show
 
     if Rails.env.test?
       render plain: "Test environment - BlogPost: #{@blog_post.title}"
