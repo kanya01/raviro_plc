@@ -13,7 +13,7 @@
       <img src="./assets/0.13.1/loading.gif" alt="loading"/>
     </div>
     <div id="wrapper" class="hide">
-      <div class="timestamp">Generated <abbr class="timeago" title="2025-03-13T14:16:19+00:00">2025-03-13T14:16:19+00:00</abbr></div>
+      <div class="timestamp">Generated <abbr class="timeago" title="2025-03-13T14:39:22+00:00">2025-03-13T14:39:22+00:00</abbr></div>
       <ul class="group_tabs"></ul>
 
       <div id="content">
@@ -42,9 +42,9 @@
   </div>
 
   <div class="t-line-summary">
-    <b>229</b> relevant lines,
+    <b>236</b> relevant lines,
     <span class="green"><b>0</b> lines covered</span> and
-    <span class="red"><b>229</b> lines missed. </span>
+    <span class="red"><b>236</b> lines missed. </span>
     (<span class="red">
   0.0%
 </span>
@@ -105,10 +105,10 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#290750253083c47a0d0b792456428be6ef311daa" class="src_link" title="app/controllers/api/inquiries_controller.rb">app/controllers/api/inquiries_controller.rb</a></td>
             <td class="red strong cell--number t-file__coverage">0.00 %</td>
+            <td class="cell--number">23</td>
             <td class="cell--number">19</td>
-            <td class="cell--number">15</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">15</td>
+            <td class="cell--number">19</td>
             <td class="cell--number">0.00</td>
             
           </tr>
@@ -358,10 +358,10 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#0a4e1ff3c7f55d95d7a14e16510f37b9dd73c18c" class="src_link" title="app/models/inquiry.rb">app/models/inquiry.rb</a></td>
             <td class="red strong cell--number t-file__coverage">0.00 %</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">5</td>
+            <td class="cell--number">5</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">5</td>
             <td class="cell--number">0.00</td>
             
           </tr>
@@ -431,9 +431,9 @@
   </div>
 
   <div class="t-line-summary">
-    <b>124</b> relevant lines,
+    <b>128</b> relevant lines,
     <span class="green"><b>0</b> lines covered</span> and
-    <span class="red"><b>124</b> lines missed. </span>
+    <span class="red"><b>128</b> lines missed. </span>
     (<span class="red">
   0.0%
 </span>
@@ -494,10 +494,10 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#290750253083c47a0d0b792456428be6ef311daa" class="src_link" title="app/controllers/api/inquiries_controller.rb">app/controllers/api/inquiries_controller.rb</a></td>
             <td class="red strong cell--number t-file__coverage">0.00 %</td>
+            <td class="cell--number">23</td>
             <td class="cell--number">19</td>
-            <td class="cell--number">15</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">15</td>
+            <td class="cell--number">19</td>
             <td class="cell--number">0.00</td>
             
           </tr>
@@ -657,9 +657,9 @@
   </div>
 
   <div class="t-line-summary">
-    <b>48</b> relevant lines,
+    <b>51</b> relevant lines,
     <span class="green"><b>0</b> lines covered</span> and
-    <span class="red"><b>48</b> lines missed. </span>
+    <span class="red"><b>51</b> lines missed. </span>
     (<span class="red">
   0.0%
 </span>
@@ -731,10 +731,10 @@
           <tr class="t-file">
             <td class="strong t-file__name"><a href="#0a4e1ff3c7f55d95d7a14e16510f37b9dd73c18c" class="src_link" title="app/models/inquiry.rb">app/models/inquiry.rb</a></td>
             <td class="red strong cell--number t-file__coverage">0.00 %</td>
-            <td class="cell--number">2</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">5</td>
+            <td class="cell--number">5</td>
             <td class="cell--number">0</td>
-            <td class="cell--number">2</td>
+            <td class="cell--number">5</td>
             <td class="cell--number">0.00</td>
             
           </tr>
@@ -2487,9 +2487,9 @@
     
 
     <div class="t-line-summary">
-      <b>15</b> relevant lines.
+      <b>19</b> relevant lines.
       <span class="green"><b>0</b> lines covered</span> and
-      <span class="red"><b>15</b> lines missed.</span>
+      <span class="red"><b>19</b> lines missed.</span>
     </div>
 
     
@@ -2545,7 +2545,7 @@
 
             
 
-            <code class="ruby">    @inquiry = Inquiry.new(inquiry_params)</code>
+            <code class="ruby">    begin</code>
           </li>
         </div>
       
@@ -2555,12 +2555,22 @@
 
             
 
+            <code class="ruby">    @inquiry = Inquiry.new(inquiry_params)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="7">
+            
+
+            
+
             <code class="ruby">    if @inquiry.save</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="7">
+          <li class="never" data-hits="" data-linenumber="8">
             
 
             
@@ -2570,7 +2580,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="8">
+          <li class="missed" data-hits="0" data-linenumber="9">
             
 
             
@@ -2580,7 +2590,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="9">
+          <li class="missed" data-hits="0" data-linenumber="10">
             
 
             
@@ -2590,7 +2600,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="10">
+          <li class="missed" data-hits="0" data-linenumber="11">
             
 
             
@@ -2600,7 +2610,7 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="11">
+          <li class="missed" data-hits="0" data-linenumber="12">
             
 
             
@@ -2610,22 +2620,12 @@
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="12">
+          <li class="missed" data-hits="0" data-linenumber="13">
             
 
             
 
-            <code class="ruby">  end</code>
-          </li>
-        </div>
-      
-        <div>
-          <li class="never" data-hits="" data-linenumber="13">
-            
-
-            
-
-            <code class="ruby"></code>
+            <code class="ruby">    rescue ActionController::ParameterMissing =&gt; e</code>
           </li>
         </div>
       
@@ -2635,17 +2635,17 @@
 
             
 
-            <code class="ruby">  private</code>
+            <code class="ruby">      render json: { error: e.message }, status: :bad_request</code>
           </li>
         </div>
       
         <div>
-          <li class="never" data-hits="" data-linenumber="15">
+          <li class="missed" data-hits="0" data-linenumber="15">
             
 
             
 
-            <code class="ruby"></code>
+            <code class="ruby">    end</code>
           </li>
         </div>
       
@@ -2655,17 +2655,17 @@
 
             
 
-            <code class="ruby">  def inquiry_params</code>
+            <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="17">
+          <li class="never" data-hits="" data-linenumber="17">
             
 
             
 
-            <code class="ruby">    params.require(:inquiry).permit(:name, :email, :message)</code>
+            <code class="ruby"></code>
           </li>
         </div>
       
@@ -2675,12 +2675,52 @@
 
             
 
+            <code class="ruby">  private</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="never" data-hits="" data-linenumber="19">
+            
+
+            
+
+            <code class="ruby"></code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="20">
+            
+
+            
+
+            <code class="ruby">  def inquiry_params</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="21">
+            
+
+            
+
+            <code class="ruby">    params.require(:inquiry).permit(:name, :email, :message)</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="22">
+            
+
+            
+
             <code class="ruby">  end</code>
           </li>
         </div>
       
         <div>
-          <li class="missed" data-hits="0" data-linenumber="19">
+          <li class="missed" data-hits="0" data-linenumber="23">
             
 
             
@@ -5470,9 +5510,9 @@
     
 
     <div class="t-line-summary">
-      <b>2</b> relevant lines.
+      <b>5</b> relevant lines.
       <span class="green"><b>0</b> lines covered</span> and
-      <span class="red"><b>2</b> lines missed.</span>
+      <span class="red"><b>5</b> lines missed.</span>
     </div>
 
     
@@ -5494,6 +5534,36 @@
       
         <div>
           <li class="missed" data-hits="0" data-linenumber="2">
+            
+
+            
+
+            <code class="ruby">  validates :name, presence: true</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="3">
+            
+
+            
+
+            <code class="ruby">  validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="4">
+            
+
+            
+
+            <code class="ruby">  validates :message, presence: true</code>
+          </li>
+        </div>
+      
+        <div>
+          <li class="missed" data-hits="0" data-linenumber="5">
             
 
             
