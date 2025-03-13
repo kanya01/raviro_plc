@@ -62,6 +62,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem 'mocha'
+  gem 'simplecov', require: false
 end
 
 gem "administrate", "~> 0.19.0"
