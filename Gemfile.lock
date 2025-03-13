@@ -207,6 +207,8 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.4)
+    mocha (2.7.1)
+      ruby2_keywords (>= 0.0.5)
     msgpack (1.7.5)
     net-imap (0.5.5)
       date
@@ -338,6 +340,7 @@ GEM
       rubocop-performance
       rubocop-rails
     ruby-progressbar (1.13.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.4.1)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -390,7 +393,11 @@ GEM
     tailwindcss-rails (3.1.0)
       railties (>= 7.0.0)
       tailwindcss-ruby
+    tailwindcss-ruby (3.4.17-aarch64-linux)
+    tailwindcss-ruby (3.4.17-arm-linux)
+    tailwindcss-ruby (3.4.17-arm64-darwin)
     tailwindcss-ruby (3.4.17-x86_64-darwin)
+    tailwindcss-ruby (3.4.17-x86_64-linux)
     terraform (0.0.9)
     thor (1.3.2)
     thruster (0.1.10)
@@ -450,6 +457,7 @@ DEPENDENCIES
   jbuilder
   jsbundling-rails
   kamal
+  mocha
   pg (~> 1.1)
   propshaft
   puma (>= 5.0)
