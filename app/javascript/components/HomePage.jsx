@@ -17,16 +17,41 @@ const HomePage = () => {
     }, []);
 
     return (
-        <div className="min-h-screen flex flex-col bg-white">
+        <div className="min-h-screen flex flex-col bg-white relative overflow-hidden">
+            {/* Subtle dot grid pattern - Using CSS background */}
+            <div
+                className="absolute inset-0 opacity-[0.25] pointer-events-none"
+                style={{
+                    backgroundImage: `radial-gradient(#4a90e2 1px, transparent 1px)`,
+                    backgroundSize: '30px 30px'
+                }}
+            ></div>
+
+            {/* Abstract minimal shapes */}
+            <div className="absolute top-20 -right-24 w-64 h-64 rounded-full border border-gray-200 opacity-20"></div>
+            <div className="absolute top-40 -right-32 w-96 h-96 rounded-full border border-gray-200 opacity-10"></div>
+            <div className="absolute -bottom-40 -left-20 w-80 h-80 rounded-full border border-gray-100 opacity-20"></div>
+
+            {/* Wave-like shape */}
+            <div className="absolute right-0 top-1/3 w-1/4 h-64 opacity-10 pointer-events-none">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full text-gray-300">
+                    <path fill="currentColor" d="M44.7,-76.4C58.8,-69.2,71.8,-59.1,79.6,-45.8C87.4,-32.6,90,-16.3,89.1,-0.5C88.2,15.3,83.8,30.6,76.2,45.3C68.6,60,57.8,74.1,43.4,83.5C29,92.9,11,97.6,-4.4,94.1C-19.8,90.5,-32.7,78.9,-42.4,66.5C-52.2,54.1,-58.9,41,-66.1,27.3C-73.3,13.7,-81.1,-0.5,-81.3,-15.1C-81.6,-29.7,-74.2,-44.7,-63.1,-55.3C-51.9,-65.9,-36.9,-72,-22.8,-78.2C-8.7,-84.4,4.5,-90.8,19.1,-90.3C33.8,-89.8,49.8,-82.5,58.5,-86.3C67.1,-90.1,67.3,-105.2,64.7,-112.2"
+                          transform="translate(100 100)" />
+                </svg>
+            </div>
+
             <Header />
 
             <main className="flex-grow">
-                {/* Hero Section - Ultra Minimal */}
+                {/* Hero Section with gradient overlay */}
                 <section className="h-screen flex items-center px-4 relative">
+                    {/* Soft gradient overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 to-transparent pointer-events-none"></div>
+
                     {/* Extremely subtle gradient line */}
                     <div className="absolute left-0 top-1/3 h-px w-16 bg-gradient-to-r from-blue-400 to-transparent"></div>
 
-                    <div className="container mx-auto max-w-3xl">
+                    <div className="container mx-auto max-w-3xl relative z-10">
                         <div className="fade-in opacity-0 transition-all duration-1000 delay-300">
                             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extralight text-gray-800 leading-tight mb-8">
                                 Bridging research and impact in global health
@@ -59,8 +84,15 @@ const HomePage = () => {
                 </section>
 
                 {/* Single Value Statement */}
-                <section className="py-32 px-4 bg-gray-50">
-                    <div className="container mx-auto max-w-2xl text-center">
+                <section className="py-32 px-4 bg-gray-50 relative">
+                    {/* Abstract corner shapes */}
+                    <div className="absolute top-0 right-0 w-40 h-40 opacity-5">
+                        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                            <path fill="#4a90e2" d="M39.9,-65.7C52.9,-60.1,65.7,-51.5,74.2,-39.1C82.8,-26.8,87.1,-10.7,85.5,4.7C83.9,20,76.4,34.7,66.4,47.2C56.4,59.7,43.9,70,29.7,75.6C15.5,81.1,-0.4,81.9,-15.6,77.8C-30.8,73.7,-45.3,64.8,-56.5,52.7C-67.7,40.6,-75.5,25.3,-79.7,8.3C-83.9,-8.8,-84.5,-27.6,-76.3,-41.2C-68.1,-54.7,-51.1,-63.1,-35.8,-67.1C-20.4,-71.1,-6.8,-70.7,6.7,-71.8C20.2,-72.9,40.4,-75.4,43.5,-71.5C46.6,-67.6,27,-57.3,27,-57.3L39.9,-65.7Z" transform="translate(100 100)" />
+                        </svg>
+                    </div>
+
+                    <div className="container mx-auto max-w-2xl text-center relative z-10">
                         <p className="text-xl md:text-2xl font-extralight text-gray-700 leading-relaxed fade-in opacity-0 transition-all duration-1000 delay-500">
                             "Raviro empowers health professionals in the Global South by creating pathways for research to drive tangible improvements in public health outcomes."
                         </p>
@@ -68,8 +100,17 @@ const HomePage = () => {
                 </section>
 
                 {/* Latest Blog Posts Preview */}
-                <section className="py-32 px-4">
-                    <div className="container mx-auto max-w-4xl">
+                <section className="py-32 px-4 relative">
+                    {/* Dot pattern - different density */}
+                    <div
+                        className="absolute inset-0 opacity-[0.02] pointer-events-none"
+                        style={{
+                            backgroundImage: `radial-gradient(#4a90e2 0.8px, transparent 0.8px)`,
+                            backgroundSize: '20px 20px'
+                        }}
+                    ></div>
+
+                    <div className="container mx-auto max-w-4xl relative z-10">
                         <h2 className="text-2xl font-extralight text-gray-800 mb-16 fade-in opacity-0 transition-all duration-1000 delay-600">
                             Latest Insights
                         </h2>
@@ -118,9 +159,16 @@ const HomePage = () => {
                     </div>
                 </section>
 
-                {/* CTA - Ultra Minimal */}
-                <section className="py-32 px-4 bg-gray-50">
-                    <div className="container mx-auto max-w-md text-center fade-in opacity-0 transition-all duration-1000 delay-900">
+                {/* CTA - Ultra Minimal with subtle shape background */}
+                <section className="py-32 px-4 bg-gray-50 relative">
+                    {/* Abstract shape */}
+                    <div className="absolute left-0 bottom-0 w-2/3 h-32 opacity-10">
+                        <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
+                            <path fill="none" stroke="#4a90e2" strokeWidth="1" d="M0,100 C150,200 350,0 600,100" />
+                        </svg>
+                    </div>
+
+                    <div className="container mx-auto max-w-md text-center fade-in opacity-0 transition-all duration-1000 delay-900 relative z-10">
                         <a
                             href="/contact"
                             className="inline-block px-12 py-4 border border-blue-400 text-blue-600 rounded-full font-light hover:bg-blue-50 transition-all duration-300"

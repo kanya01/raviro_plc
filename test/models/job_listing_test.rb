@@ -1,7 +1,8 @@
 require "test_helper"
 
 class JobListingTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "should skip job listings tests" do
+    skip_if_not_in_scope("job_listings")
+  end
+
 end
