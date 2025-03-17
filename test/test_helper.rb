@@ -2,6 +2,8 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 require 'simplecov'
+require_relative "support/skip_tests_helper"
+
 SimpleCov.start 'rails' do
   add_filter '/bin/'
   add_filter '/db/'
@@ -20,5 +22,6 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    include SkipTestsHelper
   end
 end

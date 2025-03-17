@@ -1,6 +1,33 @@
 {
   "Minitest": {
     "coverage": {
+      "/Users/moseskanya/code/raviro_plc/app/models/admin.rb": {
+        "lines": [
+          1,
+          null,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      },
+      "/Users/moseskanya/code/raviro_plc/app/models/application_record.rb": {
+        "lines": [
+          1,
+          1,
+          null
+        ]
+      },
       "/Users/moseskanya/code/raviro_plc/app/controllers/admin/applications_controller.rb": {
         "lines": [
           0,
@@ -141,7 +168,11 @@
           0,
           0,
           0,
+          0,
           null,
+          0,
+          0,
+          0,
           0,
           0,
           0,
@@ -410,40 +441,11 @@
         ],
         "branches": {}
       },
-      "/Users/moseskanya/code/raviro_plc/app/models/admin.rb": {
-        "lines": [
-          0,
-          null,
-          null,
-          0,
-          0,
-          null,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          0,
-          null,
-          0,
-          0
-        ],
-        "branches": {}
-      },
       "/Users/moseskanya/code/raviro_plc/app/models/application.rb": {
         "lines": [
           0,
           0,
           0,
-          0,
-          0,
-          0
-        ],
-        "branches": {}
-      },
-      "/Users/moseskanya/code/raviro_plc/app/models/application_record.rb": {
-        "lines": [
           0,
           0,
           0
@@ -476,6 +478,9 @@
       "/Users/moseskanya/code/raviro_plc/app/models/inquiry.rb": {
         "lines": [
           0,
+          0,
+          0,
+          0,
           0
         ],
         "branches": {}
@@ -505,11 +510,13 @@
       "/Users/moseskanya/code/raviro_plc/app/models/tag.rb": {
         "lines": [
           0,
+          0,
+          0,
           0
         ],
         "branches": {}
       }
     },
-    "timestamp": 1741875379
+    "timestamp": 1741959290
   }
 }
